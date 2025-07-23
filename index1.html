@@ -5,23 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-    <input id="inputdate"type="date">
-    <button id ="btnPrint">Print</button>
-
 <body>
-    <script>
-         var inputdate = document.getElementById('inputdate');
-         var btnPrint = document.getElementById('btnPrint');
-         btnPrint.onclick = ()=>{
-            var mydate = new Date (inputdate.vale);
-            var today = new Date ();
-            console.log(today > mydate);
-            console.log(today.getUTCFullYear());
-            console.log(today.getMonth()+1);//0-11
+    <h2>Kiểm tra ngày tháng năm</h2>
+    <input type="text" id="dateInput" placeholder="Nhập ngày (DD/MM/YYYY)">
+    <button onclick="checkDate()">Kiểm tra</button>
+    <p id="dateResult"></p>
 
-         }
-        </script>
-    
-    
+    <script>
+        function parseDate(dateStr) {
+            const [day, month, year] = dateStr.split('/').map(Number);
+            return new Date(year, month - 1, day);
+        }
+
+        function isValidDate(dateStr) {
+            const [day, month, year] = dateStr.split('/').map(Number);
+            const date = new Date(year, month - 1, day);
+            return (
+                date.getFullYear() === year &&
+                date.getMonth() === month - 1 &&
+                date.getDate() === day
+            );
+        }
+        
+        function calculateAge(birthDate) {
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return age;
+        }
+
+        function checkDate() {
+            const input = document.getElementById('dateInput').value;
+            const result = document.getElementById('dateResult');
+
+            if (!isValidDate(input)) {
+                result.textContent = "Ngày không hợp lệ!";
+                return;
+            }
+
+            const inputDate = parseDate(input);
+            const today = new Date();
+            inputDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+
+            if (inputDate > today) {
+                result.textContent = "Ngày ở tương lai!";
+                return;
+            }
+            
+            const age = calculateAge(inputDate);
+            if (age < 18) {
+                result.textContent = `Bạn mới ${age} tuổi. Chỉ chấp nhận từ 18 tuổi trở lên.`;
+                return;
+            }
+
+            if (inputDate < today) {
+                result.textContent = `Ngày hợp lệ. Bạn ${age} tuổi.`;
+            } else {
+                result.textContent = "Chính là hôm nay!";
+            }
+        }
+    </script>
 </body>
 </html>
