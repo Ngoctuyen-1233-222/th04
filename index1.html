@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <input id="inputdate"type="date">
+    <button id ="btnPrint">Print</button>
+
+<body>
+    <script>
+         var inputdate = document.getElementById('inputdate');
+         var btnPrint = document.getElementById('btnPrint');
+         btnPrint.onclick = ()=>{
+            var mydate = new Date (inputdate.vale);
+            var today = new Date ();
+            console.log(today > mydate);
+            console.log(today.getUTCFullYear());
+            console.log(today.getMonth()+1);//0-11
+
+         }
+        </script>
+    
+    
+</body>
+</html>

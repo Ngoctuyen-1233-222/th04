@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài tập ngày tháng và xử lý dữ liệu</title>
+</head>
+<body>
+  <h2>Kiểm tra Ngày tháng</h2>
+  <input type="text" id="dateInput" placeholder="Nhập ngày (DD/MM/YYYY)">
+  <button onclick="checkDate()">Kiểm tra</button>
+  <p id="dateResult"></p>
+
+  <hr>
+
+  <h2>🔐 Kiểm tra Mật khẩu mạnh</h2>
+  <input type="password" id="passwordInput" placeholder="Nhập mật khẩu">
+  <button onclick="checkPassword()">Kiểm tra</button>
+  <p id="passwordResult"></p>
+
+  <hr>
+
+  <h2>📧 Kiểm tra Email</h2>
+  <input type="text" id="emailInput" placeholder="Nhập email">
+  <button onclick="checkEmail()">Kiểm tra</button>
+  <p id="emailResult"></p>
+
+  <hr>
+
+  <h2>🔗 Kiểm tra Link</h2>
+  <input type="text" id="linkInput" placeholder="Nhập link">
+  <button onclick="checkLink()">Kiểm tra</button>
+  <p id="linkResult"></p>
+
+  <script>
+    // Xử lý ngày tháng
+    function parseDate(dateStr) {
+      const [day, month, year] = dateStr.split('/').map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function isValidDate(dateStr) {
+      const [day, month, year] = dateStr.split('/').map(Number);
+      const date = new Date(year, month - 1, day);
+      return (
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day
+      );
+    }
+
+    function checkDate() {
+      const input = document.getElementById('dateInput').value;
+      const result = document.getElementById('dateResult');
+
+      if (!isValidDate(input)) {
+        result.textContent = " Ngày không hợp lệ!";
+        return;
+      }
+
+      const inputDate = parseDate(input);
+      const today = new Date();
+      inputDate.setHours(0,0,0,0);
+      today.setHours(0,0,0,0);
+
+      if (inputDate < today) result.textContent = " Ngày ở quá khứ";
+      else if (inputDate > today) result.textContent = " Ngày ở tương lai";
+      else result.textContent = " Chính là hôm nay!";
+    }
+
+    // Kiểm tra mật khẩu mạnh
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const result = document.getElementById('passwordResult');
+
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+      if (regex.test(password)) {
+        result.textContent = " Mật khẩu mạnh";
+      } else {
+        result.textContent = " Mật khẩu yếu (Cần >=8 ký tự, gồm chữ hoa, thường, số và ký tự đặc biệt)";
+      }
+    }
+
+    // Kiểm tra email
+    function checkEmail() {
+      const email = document.getElementById('emailInput').value;
+      const result = document.getElementById('emailResult');
+
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      result.textContent = regex.test(email) ? " Email hợp lệ" : " Email không hợp lệ";
+    }
+
+    // Kiểm tra link
+    function checkLink() {
+Bạn đã gửi
+const link = document.getElementById('linkInput').value;
+      const result = document.getElementById('linkResult');
+
+      try {
+        new URL(link);
+        result.textContent = " Link hợp lệ";
+      } catch (e) {
+        result.textContent = " Link không hợp lệ";
+      }
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài tập ngày tháng và xử lý dữ liệu</title>
+</head>
+<body>
+  <h2> Kiểm tra Ngày tháng</h2>
+  <input type="text" id="dateInput" placeholder="Nhập ngày (DD/MM/YYYY)">
+  <button onclick="checkDate()">Kiểm tra</button>
+  <p id="dateResult"></p>
+
+  <hr>
+
+  <h2>🔐 Kiểm tra Mật khẩu mạnh</h2>
+  <input type="password" id="passwordInput" placeholder="Nhập mật khẩu">
+  <button onclick="checkPassword()">Kiểm tra</button>
+  <p id="passwordResult"></p>
+
+  <hr>
+
+  <h2>📧 Kiểm tra Email</h2>
+  <input type="text" id="emailInput" placeholder="Nhập email">
+  <button onclick="checkEmail()">Kiểm tra</button>
+  <p id="emailResult"></p>
+
+  <hr>
+
+  <h2>🔗 Kiểm tra Link</h2>
+  <input type="text" id="linkInput" placeholder="Nhập link">
+  <button onclick="checkLink()">Kiểm tra</button>
+  <p id="linkResult"></p>
+
+  <script>
+    // Xử lý ngày tháng
+    function parseDate(dateStr) {
+      const [day, month, year] = dateStr.split('/').map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function isValidDate(dateStr) {
+      const [day, month, year] = dateStr.split('/').map(Number);
+      const date = new Date(year, month - 1, day);
+      return (
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day
+      );
+    }
+
+    function checkDate() {
+      const input = document.getElementById('dateInput').value;
+      const result = document.getElementById('dateResult');
+
+      if (!isValidDate(input)) {
+        result.textContent = "Ngày không hợp lệ!";
+        return;
+      }
+
+      const inputDate = parseDate(input);
+      const today = new Date();
+      inputDate.setHours(0,0,0,0);
+      today.setHours(0,0,0,0);
+
+      if (inputDate < today) result.textContent = "📆 Ngày ở quá khứ";
+      else if (inputDate > today) result.textContent = "📆 Ngày ở tương lai";
+      else result.textContent = "📅 Chính là hôm nay!";
+    }
+
+    // Kiểm tra mật khẩu mạnh
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const result = document.getElementById('passwordResult');
+
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+      if (regex.test(password)) {
+        result.textContent = "✅ Mật khẩu mạnh";
+      } else {
+        result.textContent = "❌ Mật khẩu yếu (Cần >=8 ký tự, gồm chữ hoa, thường, số và ký tự đặc biệt)";
+      }
+    }
+
+    // Kiểm tra email
+    function checkEmail() {
+      const email = document.getElementById('emailInput').value;
+      const result = document.getElementById('emailResult');
+
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      result.textContent = regex.test(email) ? "✅ Email hợp lệ" : "❌ Email không hợp lệ";
+    }
+
+    // Kiểm tra link
+    function checkLink() {
+Bạn đã gửi
+const link = document.getElementById('linkInput').value;
+      const result = document.getElementById('linkResult');
+
+      try {
+        new URL(link);
+        result.textContent = "✅ Link hợp lệ";
+      } catch (e) {
+        result.textContent = "❌ Link không hợp lệ";
+      }
+    }
+  </script>
+</body>
+</html>
